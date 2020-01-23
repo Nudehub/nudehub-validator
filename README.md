@@ -16,6 +16,32 @@ The docker image provides two environment variables necessary to operate the nod
 
 ## Example Operation
 
+Install and start
+
 ```shell
-docker run --env BOOTNODE=mainnet --env STAKING_ADDRESS=0x0011223344556677889900112233445566778899 nudehub/nudehub-validator
+docker run -d --name nudehub-validator --restart=always --env BOOTNODE=mainnet --env STAKING_ADDRESS=0x0011223344556677889900112233445566778899 nudehub/nudehub-validator
+```
+
+Attach and view output
+
+```shell
+docker attach nudehub-validator
+```
+
+Detach: Ctrl-P, Ctrl-Q
+Stop validator and detach: Ctrl-C
+
+Start a stopped validator:
+
+```shell
+docker start nudehub-validator
+```
+
+Update to latest version and restart:
+
+```shell
+docker stop nudehub-validator
+docker rm nudehub-validator
+docker pull nudehub/nudehub-validator
+docker run -d --name nudehub-validator --restart=always --env BOOTNODE=mainnet --env STAKING_ADDRESS=0x0011223344556677889900112233445566778899 nudehub/nudehub-validator
 ```
